@@ -29,8 +29,9 @@
           --panel: #21222c;
           --card: #1d1e27;
           --bg: #282a36;
+          --material-blue: #2097f3;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
         html { height: 100%; }
         body {
           height: 100%;
@@ -70,6 +71,16 @@
                 var( --sammarco1 ) 10% ,
                 rgb(4 4 4) 
             );
+          background: 
+            linear-gradient( 
+              180deg, 
+              #cfc09f 22%, 
+              #634f2c 24%, 
+              #cfc09f 26%, 
+              #cfc09f 27%, 
+              #ffecb3 40%, 
+              #3a2c0f 78% 
+            );
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           padding: 16px;
@@ -82,10 +93,10 @@
             rgb(243, 112, 201),
             #fff
           );
-          background: linear-gradient(
-            336deg,
-            #15161c,
-            #282a36
+          background: radial-gradient(
+            ellipse at center, 
+            #282a36 0%,
+            #15161c 100%
           );
           height: 100%;
         }
@@ -115,13 +126,23 @@
               rgb(4 4 4),
               rgb(255 217 0)
             );
+          background: 
+            linear-gradient(
+              180deg, 
+              #cfc09f 22%,
+              #634f2c 24%, 
+              #cfc09f 26%, 
+              #cfc09f 27%,
+              #ffecb3 40%,
+              #3a2c0f 78%
+            );
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           padding: 16px;
           user-select: none;
         }
 
-        sidenav {
+        drawer {
           display: block;
           height: 100%;
           width: 0; 
@@ -170,7 +191,8 @@
           transition: all .5s cubic-bezier(0.68, -0.55, 0, 1.31);
         }
 
-        sidenav a {
+        drawer a,
+        drawer-item {
           padding: 8px 8px 8px 32px;
           text-decoration: none;
           font-size: 25px;
@@ -180,12 +202,13 @@
           cursor: pointer;
         }
 
-        sidenav a:hover,
+        drawer a:hover,
+        drawer-item:hover,
         summary:hover {
           color: #f1f1f1;
         }
 
-        sidenav .btn_close {
+        drawer .btn_close {
           position: absolute;
           top: 0;
           right: 25px;
@@ -200,6 +223,8 @@
         lnk:hover {
           color: goldenrod;
         }
+        /* .temaClaro { background: #ffffff !important; } */
+        /* .temaEscuro { background: #ff9e00 !important; } */
 
        @media only screen and ( max-width: 600px ) {
          appbar-c, appbar-d { display: none; }
@@ -215,7 +240,7 @@
     <scaffold>
       <appbar>
         <appbar-e>
-          <txt onclick="openNav()">Sammarco Club</txt>
+          <txt onclick="openDrawer()">Sammarco Club</txt>
         </appbar-e>
         <appbar-c>
         </appbar-c>
@@ -226,35 +251,58 @@
         <titulo>Sammarco</titulo>
       </scenter>
 
-      <sidenav id="idSideNav">
+      <drawer id="drawer" class="classe">
         <drawer-header>
-          <a  class="btn_close" onclick="closeNav()">&times;</a>  <!-- href="javascript:void(0)" -->
+          <a  class="btn_close" onclick="closeDrawer()">&times;</a>  <!-- href="javascript:void(0)" -->
         </drawer-header>
-        <a href="#">About</a>
-        <details>
-          <summary>
-            Currículos
-          </summary>
-          <details-bg>
-            <lnk onclick="window.open('curriculos/leo.html', '_blank');">Leonardo</lnk>
-          </details-bg>
-        </details>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
-      </sidenav>
+        <drawerItem>
+          <drawer-item onclick="">About</drawer-item>
+        </drawerItem>
+        <drawerItem>
+          <details>
+            <summary>
+              Currículos
+            </summary>
+            <details-bg>
+              <lnk onclick="window.open('curriculos/leo.html', '_blank');">Leonardo</lnk>
+            </details-bg>
+          </details>
+        </drawerItem>
+        <drawerItem>
+          <details>
+            <summary>
+              Services
+            </summary>
+            <details-bg>
+              <lnk onclick="window.open();"></lnk>
+            </details-bg>
+          </details>
+        </drawerItem>
+        <drawerItem>
+          <drawer-item onclick="">Clients</drawer-item>
+        </drawerItem>
+        <drawerItem>
+          <drawer-item onclick="">Contact</drawer-item>
+        </drawerItem>
+      </drawer>
 
     </scaffold>
     <scripts>
       <script>
-        function openNav() {
-          document.getElementById("idSideNav").style.width = "250px";
-          document.getElementById("idSideNav").style.visibility = "visible";
+        function openDrawer() {
+          document.getElementById("drawer").style.width = "250px";
+          document.getElementById("drawer").style.visibility = "visible";
+          // document.querySelector(".classe").classList.remove( "temaEscuro" );
+          // document.querySelector(".classe").classList.add( "temaClaro" );
+          document.querySelector(".classe").classList.toggle( "temaClaro" );
         }
-
-        function closeNav() {
-          document.getElementById("idSideNav").style.width = "0";
-          document.getElementById("idSideNav").style.visibility = "hidden";
+        
+        function closeDrawer() {
+          document.getElementById("drawer").style.width = "0";
+          document.getElementById("drawer").style.visibility = "hidden";
+          // document.querySelector(".classe").classList.remove( "temaClaro" );
+          // document.querySelector(".classe").classList.add( "temaEscuro" );
+          document.querySelector(".classe").classList.toggle( "temaEscuro" );
         }
       </script>
     </scripts>

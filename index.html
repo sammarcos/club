@@ -16,13 +16,9 @@
         :root {
           --appbar: #fe5cde;
           --appbar-height: 90px;
-          --sammarco: #fe5cde;
-          --sammarco1: #fe5cde;
-          --sammarco2: #ad078c;
-          --sammarco1: rgba(255, 217, 0, 0.754);
-          --sammarco2: rgba(174, 149, 11, 0.754);
-          --sammarco3: rgb(112, 85, 18);
-          --sammarco4: rgb(58, 44, 8);
+          --drawer-header-height: 68px;
+          --drawer-width-closed: 0px;
+          --drawer-width-opened: 250px;
           --scaffold: #282a36;
           --dark: #15161c;
           --sidebar: #181a21;
@@ -32,6 +28,9 @@
           --material-blue: #2097f3;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+        *::-webkit-scrollbar { width: 0px; }
+        *::-webkit-scrollbar-track { background-color: darkgrey; }
+        *::-webkit-scrollbar-thumb { box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.3); }
         html { height: 100%; }
         body {
           height: 100%;
@@ -65,12 +64,6 @@
           margin-inline-end: 0px;
           font-weight: bold;
           font-family: 'Updock', cursive;
-          background-image: 
-            linear-gradient(
-                180deg,
-                var( --sammarco1 ) 10% ,
-                rgb(4 4 4) 
-            );
           background: 
             linear-gradient( 
               180deg, 
@@ -88,11 +81,6 @@
         }
         scaffold {
           display: block;
-          background: linear-gradient(
-            336deg,
-            rgb(243, 112, 201),
-            #fff
-          );
           background: radial-gradient(
             ellipse at center, 
             #282a36 0%,
@@ -118,14 +106,6 @@
           font-family: 'Updock', cursive;
           font-size: clamp(90px, 25vw, 390px);
           font-weight: 500;
-          background-image: 
-            linear-gradient(                
-              180deg,                
-              rgb(255 217 0) 19%,
-              rgb(174 149 11) 10%,
-              rgb(4 4 4),
-              rgb(255 217 0)
-            );
           background: 
             linear-gradient(
               180deg, 
@@ -145,7 +125,7 @@
         drawer {
           display: block;
           height: 100%;
-          width: 0; 
+          width: var(--drawer-width-closed); 
           visibility: hidden;
           position: fixed;
           z-index: 1;
@@ -155,11 +135,30 @@
           box-shadow: #00000090 0 0 15px;
           transition: all .5s cubic-bezier(0.68, -0.55, 0, 1.31);
         }
+        .drawer-closed {
+          height: 100%;
+          /* width: 0;  */
+          background-color: var( --panel );
+          overflow-x: hidden;
+        }
+        .drawer-opened {
+          height: 100%;
+          visibility: visible;
+          width: var(--drawer-width-opened); 
+          overflow-x: hidden;
+        }
 
         drawer-header {
           display: block;
-          height: 68px;
+          position: sticky;
+          top: 0;
+          height: var(--drawer-header-height);
           background: var(--dark);
+        }
+
+        drawer-home {
+          display: block;
+          height: calc( 100% - var(--drawer-header-height) );
         }
 
         details {
@@ -236,25 +235,15 @@
       </style>
     </css>
   </head>
-  <body>
-    <scaffold>
-      <appbar>
-        <appbar-e>
-          <txt onclick="openDrawer()">Sammarco Club</txt>
-        </appbar-e>
-        <appbar-c>
-        </appbar-c>
-        <appbar-d>
-        </appbar-d>
-      </appbar>
-      <scenter>
-        <titulo>Sammarco</titulo>
-      </scenter>
 
-      <drawer id="drawer" class="classe">
-        <drawer-header>
-          <a  class="btn_close" onclick="closeDrawer()">&times;</a>  <!-- href="javascript:void(0)" -->
-        </drawer-header>
+  <body>
+
+    <drawer class="drawer">
+      <drawer-header>
+        <a  class="btn_close" onclick="closeDrawer()">&times;</a>  <!-- href="javascript:void(0)" -->
+      </drawer-header>
+
+      <drawer-home>
         <drawerItem>
           <drawer-item onclick="">About</drawer-item>
         </drawerItem>
@@ -284,25 +273,41 @@
         <drawerItem>
           <drawer-item onclick="">Contact</drawer-item>
         </drawerItem>
-      </drawer>
+      </drawer-home>
+    </drawer>
+    
+    <scaffold>
+
+      <appbar>
+        <appbar-e>
+          <txt onclick="openDrawer()">Sammarco Club</txt>
+        </appbar-e>
+        <appbar-c>
+        </appbar-c>
+        <appbar-d>
+        </appbar-d>
+      </appbar>
+
+      <scenter>
+        <titulo>Sammarco</titulo>
+      </scenter>
 
     </scaffold>
+
+
+
+
+
+
+
     <scripts>
       <script>
         function openDrawer() {
-          document.getElementById("drawer").style.width = "250px";
-          document.getElementById("drawer").style.visibility = "visible";
-          // document.querySelector(".classe").classList.remove( "temaEscuro" );
-          // document.querySelector(".classe").classList.add( "temaClaro" );
-          document.querySelector(".classe").classList.toggle( "temaClaro" );
+          document.querySelector( ".drawer" ).classList.toggle( "drawer-opened" );
         }
         
         function closeDrawer() {
-          document.getElementById("drawer").style.width = "0";
-          document.getElementById("drawer").style.visibility = "hidden";
-          // document.querySelector(".classe").classList.remove( "temaClaro" );
-          // document.querySelector(".classe").classList.add( "temaEscuro" );
-          document.querySelector(".classe").classList.toggle( "temaEscuro" );
+          document.querySelector( ".drawer" ).classList.toggle( "drawer-opened" );
         }
       </script>
     </scripts>

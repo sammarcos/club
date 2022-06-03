@@ -187,6 +187,8 @@
         details-bg {
           padding: 8px 0px 8px 0px;
           display: flex;
+          flex-direction: column;
+          align-items: center;
           justify-content: center;
           background: var(--bg);
           transition: all .5s cubic-bezier(0.68, -0.55, 0, 1.31);
@@ -233,6 +235,12 @@
         lnk:hover {
           color: goldenrod;
         }
+        
+        drawer-feet {
+        	display: grid;
+        	place-items: center;
+        	margin-bottom: 0;
+        }
         /* .temaClaro { background: #ffffff !important; } */
         /* .temaEscuro { background: #ff9e00 !important; } */
 
@@ -260,9 +268,7 @@
         </drawerItem>
         <drawerItem>
           <details>
-            <summary>
-              Currículos
-            </summary>
+            <summary> Currículos </summary>
             <details-bg>
               <lnk onclick="window.open('curriculos/leo.html', '_blank');">Leonardo</lnk>
             </details-bg>
@@ -270,10 +276,10 @@
         </drawerItem>
         <drawerItem>
           <details>
-            <summary>
-              Services
-            </summary>
+            <summary> Services </summary>
             <details-bg>
+              <lnk onclick="window.open();"></lnk>
+              <lnk onclick="window.open();"></lnk>
               <lnk onclick="window.open();"></lnk>
             </details-bg>
           </details>
@@ -285,6 +291,8 @@
           <drawer-item onclick="">Contact</drawer-item>
         </drawerItem>
       </drawer-home>
+      
+      <drawer-feet>v 2.5</drawer-feet>
     </drawer>
     
     <scaffold>

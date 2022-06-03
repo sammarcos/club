@@ -22,8 +22,8 @@
           --scaffold: #282a36;
           --dark: #15161c;
           --sidebar: #181a21;
-          --panel: #21222c;
           --card: #1d1e27;
+          --panel: #21222c;
           --bg: #282a36;
           --material-blue: #2097f3;
         }
@@ -185,8 +185,9 @@
           transition: all .5s ease-in;
         }
         details-bg {
-          padding: 8px 0px 8px 32px;
-          display: block;
+          padding: 8px 0px 8px 0px;
+          display: flex;
+          justify-content: center;
           background: var(--bg);
           transition: all .5s cubic-bezier(0.68, -0.55, 0, 1.31);
         }
@@ -216,9 +217,19 @@
           margin-left: 50px;
           cursor: pointer;
         }
+        option {
+        	display: flex;
+        	align-items: center;
+        	width: 95%;
+        	height: 2.5rem;
+        	margin: 2px 0;
+        	padding: 4px 0 4px 32px;
+        	border-radius: 8px;
+        	background: var( --panel );
+        }
         lnk {
-          cursor: pointer;
-          margin-left: 24px;
+          cursor: pointer;/*
+          margin-left: 24px;*/
         }
         lnk:hover {
           color: goldenrod;
@@ -254,7 +265,9 @@
               Currículos
             </summary>
             <details-bg>
-              <lnk onclick="window.open('curriculos/leo.html', '_blank');">Leonardo</lnk>
+            	<option>
+              	<lnk onclick="window.open('curriculos/leo.html', '_blank');">Leonardo</lnk>
+            	</option>
             </details-bg>
           </details>
         </drawerItem>

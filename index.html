@@ -217,8 +217,11 @@
           margin-left: 50px;
           cursor: pointer;
         }
-        option {
-        	display: flex;
+       
+        lnk {
+          cursor: pointer;/*
+          margin-left: 24px;*/
+          display: flex;
         	align-items: center;
         	width: 95%;
         	height: 2.5rem;
@@ -226,10 +229,6 @@
         	padding: 4px 0 4px 32px;
         	border-radius: 8px;
         	background: var( --panel );
-        }
-        lnk {
-          cursor: pointer;/*
-          margin-left: 24px;*/
         }
         lnk:hover {
           color: goldenrod;
@@ -265,9 +264,7 @@
               Currículos
             </summary>
             <details-bg>
-            	<option>
-              	<lnk onclick="window.open('curriculos/leo.html', '_blank');">Leonardo</lnk>
-            	</option>
+              <lnk onclick="window.open('curriculos/leo.html', '_blank');">Leonardo</lnk>
             </details-bg>
           </details>
         </drawerItem>

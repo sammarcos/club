@@ -1,316 +1,256 @@
-
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Document</title>
-
-    <css>
-      <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Updock&display=swap');
-        :root {
-          --appbar: #fe5cde;
-          --appbar-height: 90px;
-          --drawer-header-height: 68px;
-          --drawer-width-closed: 0px;
-          --drawer-width-opened: 250px;
-          --scaffold: #282a36;
-          --dark: #15161c;
-          --sidebar: #181a21;
-          --panel: #21222c;
-          --card: #1d1e27;
-          --bg: #282a36;
-          --material-blue: #2097f3;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
-        *::-webkit-scrollbar { width: 0px; }
-        *::-webkit-scrollbar-track { background-color: darkgrey; }
-        *::-webkit-scrollbar-thumb { box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.3); }
-        html { height: 100%; }
-        body {
-          height: 100%;
-        }
-        appbar {
-          display: flex;
-          height: var(--appbar-height);
-          background: #15161c;
-          z-index: 33;
-          box-shadow: #000000cc 0 0 10px;
-        }
-        appbar-e, appbar-d {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 10%;
-          height: 100%;
-        }
-        appbar-c {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 90%;
-          height: 100%;
-        }
-        txt {
-          font-size: 2em;
-          margin-block-start: 0.67em;
-          margin-block-end: 0.67em;
-          margin-inline-start: 0px;
-          margin-inline-end: 0px;
-          font-weight: bold;
-          font-family: 'Updock', cursive;
-          background: 
-            linear-gradient( 
-              180deg, 
-              #cfc09f 22%, 
-              #634f2c 24%, 
-              #cfc09f 26%, 
-              #cfc09f 27%, 
-              #ffecb3 40%, 
-              #3a2c0f 78% 
-            );
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          padding: 16px;
-          user-select: none;
-        }
-        scaffold {
-          display: block;
-          background: radial-gradient(
-            ellipse at center, 
-            #282a36 0%,
-            #15161c 100%
-          );
-          height: 100%;
-        }
-        home {
-          display: flex;
-          justify-content: center;
-          width: 100%;
-          background: #f00;
-        }
-        scenter {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-          height: calc(100% - var(--appbar-height));
-
-        }
-        titulo {
-          font-family: 'Updock', cursive;
-          font-size: clamp(90px, 25vw, 390px);
-          font-weight: 500;
-          background: 
-            linear-gradient(
-              180deg, 
-              #cfc09f 22%,
-              #634f2c 24%, 
-              #cfc09f 26%, 
-              #cfc09f 27%,
-              #ffecb3 40%,
-              #3a2c0f 78%
-            );
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          padding: 16px;
-          user-select: none;
-        }
-
-        drawer {
-          display: block;
-          height: 100%;
-          width: var(--drawer-width-closed); 
-          visibility: hidden;
-          position: fixed;
-          z-index: 1;
-          top: 0;
-          background-color: var(--panel);
-          overflow-x: hidden;
-          box-shadow: #00000090 0 0 15px;
-          transition: all .5s cubic-bezier(0.68, -0.55, 0, 1.31);
-        }
-        .drawer-closed {
-          height: 100%;
-          /* width: 0;  */
-          background-color: var( --panel );
-          overflow-x: hidden;
-        }
-        .drawer-opened {
-          height: 100%;
-          visibility: visible;
-          width: var(--drawer-width-opened); 
-          overflow-x: hidden;
-        }
-
-        drawer-header {
-          display: block;
-          position: sticky;
-          top: 0;
-          height: var(--drawer-header-height);
-          background: var(--dark);
-          box-shadow: #00000099 0 0 10px;
-        }
-
-        drawer-home {
-          display: block;
-          height: calc( 100% - var(--drawer-header-height) );
-        }
-
-        details {
-          /* padding: 8px 8px 8px 32px; */
-          text-decoration: none;
-          list-style: none;
-          font-size: 25px;
-          color: #818181;
-          display: block;
-          transition: 0.3s;
-          user-select: none;
-          transition: all .5s ease-in;
-        }
-        details[open] {
-          background: var(--card);
-          transition: all .2s ease-in;
-        }
-        summary {
-          cursor: pointer;
-          list-style: none;
-          width: 100%;
-          padding: 8px 8px 8px 32px;
-          transition: all .5s ease-in;
-        }
-        details-bg {
-          padding: 8px 0px 8px 32px;
-          display: block;
-          background: var(--bg);
-          transition: all .5s cubic-bezier(0.68, -0.55, 0, 1.31);
-        }
-
-        drawer a,
-        drawer-item {
-          padding: 8px 8px 8px 32px;
-          text-decoration: none;
-          font-size: 25px;
-          color: #818181;
-          display: block;
-          transition: 0.3s;
-          cursor: pointer;
-        }
-
-        drawer a:hover,
-        drawer-item:hover,
-        summary:hover {
-          color: #f1f1f1;
-        }
-
-        drawer .btn_close {
-          position: absolute;
-          top: 0;
-          right: 25px;
-          font-size: 36px;
-          margin-left: 50px;
-          cursor: pointer;
-        }
-        lnk {
-          cursor: pointer;
-          margin-left: 24px;
-        }
-        lnk:hover {
-          color: goldenrod;
-        }
-        /* .temaClaro { background: #ffffff !important; } */
-        /* .temaEscuro { background: #ff9e00 !important; } */
-
-       @media only screen and ( max-width: 600px ) {
-         appbar-c, appbar-d { display: none; }
-         appbar-e { width: 100%; }
-         txt {
-           font-size: 2.5rem;
-         }
-       }
-      </style>
-    </css>
-  </head>
-
-  <body>
-
-    <drawer class="drawer">
-      <drawer-header>
-        <a  class="btn_close" onclick="closeDrawer()">&times;</a>  <!-- href="javascript:void(0)" -->
-      </drawer-header>
-
-      <drawer-home>
-        <drawerItem>
-          <drawer-item onclick="">About</drawer-item>
-        </drawerItem>
-        <drawerItem>
-          <details>
-            <summary>
-              Currículos
-            </summary>
-            <details-bg>
-              <lnk onclick="window.open('curriculos/leo.html', '_blank');">Leonardo</lnk>
-            </details-bg>
-          </details>
-        </drawerItem>
-        <drawerItem>
-          <details>
-            <summary>
-              Services
-            </summary>
-            <details-bg>
-              <lnk onclick="window.open();"></lnk>
-            </details-bg>
-          </details>
-        </drawerItem>
-        <drawerItem>
-          <drawer-item onclick="">Clients</drawer-item>
-        </drawerItem>
-        <drawerItem>
-          <drawer-item onclick="">Contact</drawer-item>
-        </drawerItem>
-      </drawer-home>
-    </drawer>
-    
-    <scaffold>
-
-      <appbar>
-        <appbar-e>
-          <txt onclick="openDrawer()">Sammarco Club</txt>
-        </appbar-e>
-        <appbar-c>
-        </appbar-c>
-        <appbar-d>
-        </appbar-d>
-      </appbar>
-
-      <scenter>
-        <titulo>Sammarco</titulo>
-      </scenter>
-
-    </scaffold>
-
-
-
-
-
-
-
-    <scripts>
-      <script>
-        function openDrawer() {
-          document.querySelector( ".drawer" ).classList.toggle( "drawer-opened" );
-        }
-        
-        function closeDrawer() {
-          document.querySelector( ".drawer" ).classList.toggle( "drawer-opened" );
-        }
-      </script>
-    </scripts>
-  </body>
-</html>
+	
+	
+	<!DOCTYPE html>
+	<html lang="en">
+	  <head>
+	    <meta charset="UTF-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    
+	    <title>Sammarco Club</title>
+	
+	    <css>
+	      <style>
+	        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+	        /*@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Updock&display=swap');*/
+	        @import url('https://fonts.googleapis.com/css2?family=Updock&display=swap');
+	        :root {
+	          --appbar: #fe5cde;
+	          --appbar-height: 90px;
+	          --gangello: #fe5cde;
+	          --gangello1: #fe5cde;
+	          --gangello2: #ad078c;
+	          --gangello1: rgba(255, 217, 0, 0.754);
+	          --gangello2: rgba(174, 149, 11, 0.754);
+	          --gangello3: rgb(112, 85, 18);
+	          --gangello4: rgb(58, 44, 8);
+	          --scaffold: #282a36;
+	          --dark: #15161c;
+	          --sidebar: #181a21;
+	          --panel: #21222c;
+	          --card: #1d1e27;
+	          --bg: #282a36;
+	        }
+	        * { margin: 0; padding: 0; box-sizing: border-box; }
+	        html { height: 100%; }
+	        body {
+	          height: 100%;
+	        }
+	        appbar {
+	          display: flex;
+	          height: var(--appbar-height);
+	          background: #15161c;
+	          z-index: 33;
+	          box-shadow: #000000cc 0 0 10px;
+	        }
+	        appbar-e, appbar-d {
+	          display: flex;
+	          justify-content: center;
+	          align-items: center;
+	          width: 10%;
+	          height: 100%;
+	        }
+	        appbar-c {
+	          display: flex;
+	          justify-content: center;
+	          align-items: center;
+	          width: 90%;
+	          height: 100%;
+	        }
+	        txt {
+	          /* display: block; */
+	          font-size: 2em;
+	          margin-block-start: 0.67em;
+	          margin-block-end: 0.67em;
+	          margin-inline-start: 0px;
+	          margin-inline-end: 0px;
+	          font-weight: bold;
+	          font-family: 'Updock', cursive;
+	          background-image: 
+	            linear-gradient(
+	                180deg,
+	                var( --gangello1 ) 10% ,
+	                rgb(4 4 4) 
+	            );
+	          -webkit-background-clip: text;
+	          -webkit-text-fill-color: transparent;
+	          padding: 16px;
+	        }
+	        scaffold {
+	          display: block;
+	          /* background: var(--scaffold); */
+	          background: linear-gradient(
+	            336deg,
+	            rgb(243, 112, 201),
+	            #fff
+	          );
+	          background: linear-gradient(
+	            336deg,
+	            #15161c,
+	            #282a36
+	          );
+	          height: 100%;
+	        }
+	        home {
+	          display: flex;
+	          justify-content: center;
+	          width: 100%;
+	          background: #f00;
+	        }
+	        gCenter {
+	          display: flex;
+	          justify-content: center;
+	          align-items: center;
+	          width: 100%;
+	          height: calc(100% - var(--appbar-height));
+	
+	        }
+	        titulo {
+	          font-family: 'Updock', cursive;
+	          font-size: clamp(90px, 25vw, 390px);
+	          font-weight: 500;
+	          /* color: var(--gangello); */
+	          background-image: 
+	            linear-gradient(
+	                180deg,
+	                var( --gangello1 ) 19%,
+	                var( --gangello2 ) 10%,
+	                rgb(4 4 4) ,
+	                rgb(108 108 37)
+	            );
+	          -webkit-background-clip: text;
+	          -webkit-text-fill-color: transparent;
+	          padding: 16px;
+	        }
+	
+	        sidenav {
+	          display: block;
+	          height: 100%;
+	          width: 0; /* 250px; */
+	          visibility: hidden;
+	          position: fixed;
+	          z-index: 1;
+	          top: 0;
+	          background-color: var(--panel);
+	          overflow-x: hidden;
+	          box-shadow: #000 0 0 15px;
+	          transition: all .5s cubic-bezier(0.68, -0.55, 0, 1.31);
+	        }
+	
+	        drawer-header {
+	          display: block;
+	          height: 68px;
+	          background: var(--dark);
+	        }
+	
+	        details {
+	          padding: 8px 8px 8px 32px;
+	          text-decoration: none;
+	          list-style: none;
+	          font-size: 25px;
+	          color: #818181;
+	          display: block;
+	          transition: 0.3s;
+	          user-select: none;
+	          transition: all .5s ease-in;
+	        }
+	        details[open] {
+	          background: var(--bg);
+	          transition: all .2s ease-in;
+	        }
+	        summary {
+	          cursor: pointer;
+	          list-style: none;
+	
+	          transition: all .5s ease-in;
+	        }
+	
+	        sidenav a {
+	          padding: 8px 8px 8px 32px;
+	          text-decoration: none;
+	          font-size: 25px;
+	          color: #818181;
+	          display: block;
+	          transition: 0.3s;
+	          cursor: pointer;
+	        }
+	
+	        sidenav a:hover,
+	        summary:hover {
+	          color: #f1f1f1;
+	        }
+	
+	        sidenav .btn_close {
+	          position: absolute;
+	          top: 0;
+	          right: 25px;
+	          font-size: 36px;
+	          margin-left: 50px;
+	          cursor: pointer;
+	        }
+	        lnk {
+	          cursor: pointer;
+	          margin-left: 24px;
+	        }
+	        lnk:hover {
+	          color: goldenrod;
+	        }
+	
+	       @media only screen and ( max-width: 600px ) {
+	         appbar-c, appbar-d { display: none; }
+	         appbar-e { width: 100%; }
+	       }
+	      </style>
+	    </css>
+	  </head>
+	  <body>
+	    <scaffold>
+	      <appbar>
+	        <appbar-e>
+	          <txt onclick="openNav()">Sammarco Club</txt>
+	        </appbar-e>
+	        <appbar-c>
+	        </appbar-c>
+	        <appbar-d>
+	        </appbar-d>
+	      </appbar>
+	      <gCenter>
+	        <titulo>Sammarco</titulo>
+	      </gCenter>
+	
+	      <sidenav id="idSideNav">
+	        <drawer-header>
+	          <a  class="btn_close" onclick="closeNav()">&times;</a>  <!-- href="javascript:void(0)" -->
+	        </drawer-header>
+	        <a href="#">About</a>
+	        <details>
+	          <summary>
+	            Currículos
+	          </summary>
+	          <br>
+	          <lnk onclick="window.open('curriculos/leo.html', '_blank');">Leonardo</lnk>
+	        </details>
+	        <a href="#">Services</a>
+	        <a href="#">Clients</a>
+	        <a href="#">Contact</a>
+	      </sidenav>
+	
+	    </scaffold>
+	    <scripts>
+	      <script>
+	        function openNav() {
+	          document.getElementById("idSideNav").style.width = "250px";
+	          // document.getElementById("idSideNav").style.height = "100%";
+	          document.getElementById("idSideNav").style.visibility = "visible";
+	        }
+	
+	        function closeNav() {
+	          document.getElementById("idSideNav").style.width = "0";
+	          // document.getElementById("idSideNav").style.height = "0";
+	          document.getElementById("idSideNav").style.visibility = "hidden";
+	        }
+	      </script>
+	    </scripts>
+	  </body>
+	</html>
+	

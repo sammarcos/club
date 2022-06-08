@@ -104,6 +104,11 @@ litEmpresa1 {
   font-size: .8em !important;
 }
 
+h1, p, h2, h5, strong { 
+  -webkit-user-modify: read-write;
+  -moz-user-modify: read-write;
+}
+
 
 
 @media only screen and ( max-width: 550px ) {

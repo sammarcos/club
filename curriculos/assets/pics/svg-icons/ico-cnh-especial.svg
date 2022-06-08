@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 206 141" width="23" height="16">
+	<title>ico-cnh-especial</title>
+	<defs>
+		<image  width="206" height="141" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAM4AAACNAgMAAACCva2VAAAAAXNSR0IB2cksfwAAAAlQTFRFIFl7AAAA////pSohTQAAAAN0Uk5TAP8AaVI5rAAAAcdJREFUeJzt2TuagyAQAGAsPAL34QgUzhZWW+dU1J5yxQeExzIPk2zMSpUv8Y/MMIAJSinVA6NN0+Rm03EMfK1IsxDcFsQzMHrE653vn2OmwTePNBfdHDukOSjHDmkOyvFDAhAizUffMsQ3YC/0OGRJBZKigTb5U2Roy0yC/I0ot0qQXRAeVYLMgvD+JUitjYWGDWkOshtCgzqMzIbQTBxG6giqJDT9PgTZDCkKMjnSEtRnaPgDpN8B5dmrIXScaggyU1REFVXbhR6OEIPNp49Bz19hd/T8XUO0qYmQaM+V7e6i5wgoeofvT5VnI3x/qjyFmRzpEs0XddBE+Vq+RgUCBOdGmoAo41Q0SkUQ20FkQwENWKFHZMKleS01kAqTQmEzPiAbLrUKm4gBmZDQ+ApFcejiKwzF3yaEXyk7imsKYXVJkQ/F3NULgkyox/vKRFCofMtHXZhBGkf5FBCiVvrsPhdfhUyBWgP1Pqj6rlW1z3yrJ4iCih5oCeovtDZK9kTj1NyffkPN2vsf6BzTvYVE655oLS/T1zDZnku70cn+h/0QpPlIeHDwusMQ0VkNP32jE54/iU66RGdq3KBG+Tmh6ESSf/b5A5jQYVh6mT7hAAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+	</style>
+	<use id="Background" href="#img1" x="0" y="0"/>
+</svg>
